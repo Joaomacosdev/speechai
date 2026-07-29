@@ -1,0 +1,23 @@
+package br.com.speechapi.controller;
+
+import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api")
+public class ChatModelController {
+
+    private final OpenAiChatModel openAiChatModel;
+
+    public ChatModelController(OpenAiChatModel openAiChatModel) {
+        this.openAiChatModel = openAiChatModel;
+    }
+
+    @GetMapping("/chat-model")
+    public String chatModel(String prompt) {
+        return openAiChatModel.call(prompt);
+    }
+
+}
